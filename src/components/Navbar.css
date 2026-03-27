@@ -10,7 +10,7 @@ z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-pointer-events: none;
+pointer-events: auto;
   background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(6px);
 
@@ -48,17 +48,23 @@ pointer-events: none;
 }
 
 .nav-links li {
+  position: relative;
+}
+
+.nav-link {
   font-family: 'Libre Baskerville', serif;
   font-size: 14px;
   letter-spacing: 1px;
   color: #e6e6e6;
-
+  background: transparent;
+  border: none;
+  padding: 0;
   cursor: pointer;
   position: relative;
   transition: color 0.3s ease;
 }
 
-.nav-links li::after {
+.nav-link::after {
   content: '';
   position: absolute;
   left: 0;
@@ -70,10 +76,12 @@ pointer-events: none;
   transition: width 0.35s ease;
 }
 
-.nav-links li:hover {
+.nav-link:hover,
+.nav-link.active {
   color: #ff4d4d;
 }
 
-.nav-links li:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
   width: 100%;
 }

@@ -1,7 +1,20 @@
 import React from 'react'
 import './Navbar.css'
 
-const Navbar = () => {
+const navItems = [
+  { id: 'home', label: 'Home' },
+  { id: 'characters', label: 'Characters' },
+  { id: 'episodes', label: 'Episodes' },
+  { id: 'upside-down', label: 'Upside Down' },
+]
+
+const Navbar = ({ activeSection, onNavigate }) => {
+  const handleNavigate = (id) => {
+    if (onNavigate) {
+      onNavigate(id)
+    }
+  }
+
   return (
     <nav className="navbar">
       <div className="nav-logo">
@@ -10,10 +23,17 @@ const Navbar = () => {
       </div>
 
       <ul className="nav-links">
-        <li>Home</li>
-        <li>Characters</li>
-        <li>Episodes</li>
-        <li>Upside Down</li>
+        {navItems.map((item) => (
+          <li key={item.id}>
+            <button
+              type="button"
+              className={`nav-link ${activeSection === item.id ? 'active' : ''}`}
+              onClick={() => handleNavigate(item.id)}
+            >
+              {item.label}
+            </button>
+          </li>
+        ))}
       </ul>
     </nav>
   )
